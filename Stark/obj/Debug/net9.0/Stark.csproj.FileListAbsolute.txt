@@ -1,0 +1,15 @@
+C:\Users\olive\Downloads\TP1 AED\TrabalhoAed\Stark\obj\Debug\net9.0\Stark.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\olive\Downloads\TP1 AED\TrabalhoAed\Stark\obj\Debug\net9.0\Stark.AssemblyInfoInputs.cache
+C:\Users\olive\Downloads\TP1 AED\TrabalhoAed\Stark\obj\Debug\net9.0\Stark.AssemblyInfo.cs
+C:\Users\olive\Downloads\TP1 AED\TrabalhoAed\Stark\obj\Debug\net9.0\Stark.csproj.CoreCompileInputs.cache
+C:\Users\olive\Downloads\TP1 AED\TrabalhoAed\Stark\obj\Debug\net9.0\Stark.sourcelink.json
+C:\Users\olive\Downloads\TP1 AED\TrabalhoAed\Stark\bin\Debug\net9.0\Stark.exe
+C:\Users\olive\Downloads\TP1 AED\TrabalhoAed\Stark\bin\Debug\net9.0\Stark.deps.json
+C:\Users\olive\Downloads\TP1 AED\TrabalhoAed\Stark\bin\Debug\net9.0\Stark.runtimeconfig.json
+C:\Users\olive\Downloads\TP1 AED\TrabalhoAed\Stark\bin\Debug\net9.0\Stark.dll
+C:\Users\olive\Downloads\TP1 AED\TrabalhoAed\Stark\bin\Debug\net9.0\Stark.pdb
+C:\Users\olive\Downloads\TP1 AED\TrabalhoAed\Stark\obj\Debug\net9.0\Stark.dll
+C:\Users\olive\Downloads\TP1 AED\TrabalhoAed\Stark\obj\Debug\net9.0\refint\Stark.dll
+C:\Users\olive\Downloads\TP1 AED\TrabalhoAed\Stark\obj\Debug\net9.0\Stark.pdb
+C:\Users\olive\Downloads\TP1 AED\TrabalhoAed\Stark\obj\Debug\net9.0\Stark.genruntimeconfig.cache
+C:\Users\olive\Downloads\TP1 AED\TrabalhoAed\Stark\obj\Debug\net9.0\ref\Stark.dll

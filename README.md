@@ -1,33 +1,49 @@
-# TrabalhoAED
-Gerenciador do processo seletivo da Universidade Stark, com alocação por média e desempate por nota de redação.
+# ✅ Progresso do Projeto - Gerenciador de Processo Seletivo da Universidade Stark
 
-# Requisitos
+## ✅ Funcionalidades já implementadas
 
-# ✅ Checklist de Requisitos - Sistema de Gerenciamento do Processo Seletivo da Universidade Stark
+### 📄 Leitura do Arquivo `entrada.txt`
+- [x] A primeira linha do arquivo (`qtdCursos;qtdCandidatos`) é lida e processada.
+- [x] As linhas seguintes são corretamente interpretadas para:
+  - [x] Criar instâncias de `Course` com `Id`, `Nome` e `Vagas`.
+  - [x] Criar instâncias de `Applicant` com `Nome`, Notas (Redação, Matemática, Linguagens), e opções de curso (`Op1`, `Op2`).
 
-## 📋 Dados e Estrutura do Sistema
-- [ ] Cada curso possui **número limitado de vagas**.
-- [ ] Cada curso possui **fila de espera com posições infinitas**.
+### 📚 Estrutura de Dados
+- [x] **Dicionário**: `Dictionary<int, Course>` implementado para acesso rápido aos cursos via `Id`.
+- [x] **Classes básicas**:
+  - `Course`
+  - `Applicant`
+  - `TestResult`
 
-## 🎓 Informações do Candidato
-- [ ] Cada candidato informa **duas opções de curso**.
-- [ ] Cada candidato possui **nota da Redação, Matemática e Linguagens**.
+### ✅ Lógica básica de parsing
+- [x] Toda leitura e transformação dos dados de entrada está corretamente separada e modularizada (`ProcessEntrance`).
+- [x] Estrutura pronta para armazenar candidatos em arrays e cursos em dicionário.
 
-## 🧮 Cálculo da Média
-- [ ] A média do candidato é a **média simples** das três notas:
-  - [ ] Média = (Redação + Matemática + Linguagens) / 3
-- [ ] Em caso de empate na média:
-  - [ ] **Desempate pela nota da Redação**
-  - [ ] Não existem empates com mesma nota de Redação (sempre diferentes)
+---
 
-## 📊 Critérios de Seleção
-- [ ] O candidato é **classificado com base na média** para cada curso.
-- [ ] Se for **selecionado na 1ª opção**, ele:
-  - [ ] **Não entra em nenhuma fila de espera**
-- [ ] Se for **selecionado na 2ª opção**, ele:
-  - [ ] É colocado na **fila de espera da 1ª opção**
-- [ ] Se **não for selecionado em nenhuma das opções**, ele:
-  - [ ] Entra na **fila de espera das duas opções**
-- [ ] Se for **selecionado nas duas opções**, ele:
-  - [ ] Entra apenas na **lista de selecionados da 1ª opção**
-  - [ ] **Libera a vaga da 2ª opção**
+## ❌ Funcionalidades pendentes
+
+### 🧮 Processamento da Seleção
+- [ ] Cálculo da **média simples** das três notas para todos os candidatos.
+- [ ] Aplicação do **critério de desempate** pela nota de **Redação**.
+- [ ] Lógica para:
+  - [ ] Selecionar candidatos nas duas opções (respeitando vagas).
+  - [ ] Candidatos aprovados apenas na 2ª opção entrarem na fila da 1ª.
+  - [ ] Candidatos não aprovados entrarem na fila de espera de ambos os cursos.
+  - [ ] Candidatos aprovados nas duas opções serem aceitos apenas na 1ª.
+
+### 📝 Saída no formato `saida.txt`
+- [ ] Nome do curso + nota de corte (menor média entre selecionados).
+- [ ] Lista de selecionados ordenada (por média, com desempate por redação).
+- [ ] Lista da fila de espera, também ordenada.
+
+### 🔢 Estrutura de Dados obrigatórias (pendentes de implementação)
+- [ ] **Lista (`List<T>`)** para armazenar os candidatos **selecionados** em cada curso.
+- [ ] **Fila flexível** (estrutura própria a ser criada) para armazenar a **fila de espera** de cada curso.
+- [ ] Implementação de um **algoritmo de ordenação eficiente** (ex: QuickSort ou MergeSort) para as listas.
+
+---
+
+## 📦 Organização do Projeto
+- [x] Classes separadas para entidades (`Course`, `Applicant`, `TestResult`).
+- [ ] Ainda é necessário dividir o restante do código (seleção, escrita de saída, fila customizada) em classes/métodos.
