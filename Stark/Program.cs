@@ -1,4 +1,6 @@
-﻿string? pathEntradaTxt = FileHandler.GetFilePath()
+﻿using System.Text;
+
+string? pathEntradaTxt = FileHandler.GetFilePath()
     ?? throw new FileNotFoundException("Arquivo entrada.txt não foi encontrado no projeto.");
 
 var manager = new AdmissionManager(pathEntradaTxt);
