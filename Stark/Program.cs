@@ -1,93 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-
-string? pathEntradaTxt = FileHandler.GetFilePath()
+﻿string? pathEntradaTxt = FileHandler.GetFilePath()
     ?? throw new FileNotFoundException("Arquivo entrada.txt não foi encontrado no projeto.");
 
-Dictionary<int, Course> courses;
-List<Applicant> applicants;
+var manager = new AdmissionManager(pathEntradaTxt);
 
-ProcessEntrance(pathEntradaTxt, out courses, out applicants);
-applicants.ApplicantsSort();
-DistributeApplicants(applicants, courses);
+manager.GenerateOutput();
 
-FileHandler.GenerateOutputFile(courses);
-
-
-
-PrintData(courses, applicants);
-
-static void ProcessEntrance(string path, out Dictionary<int, Course> courses, out List<Applicant> applicants)
+class AdmissionManager
 {
-    var lines = File.ReadAllLines(path);
+    public Dictionary<int, Course> Courses { get; private set; }
+    public List<Applicant> Applicants { get; private set; }
 
-    var header = lines[0].Split(';');
-    int coursesCount = int.Parse(header[0]);
-    int applicantsCount = int.Parse(header[1]);
-
-    courses = new Dictionary<int, Course>();
-    applicants = new List<Applicant>();
-
-    for (int i = 0; i < coursesCount; i++)
+    public AdmissionManager(string inputPath)
     {
-        var parts = lines[i + 1].Split(';');
-        int id = int.Parse(parts[0]);
-        string name = parts[1];
-        int vacancies = int.Parse(parts[2]);
-
-        courses[id] = new Course(id, name, vacancies);
+        ProcessEntrance(inputPath);
+        Applicants.ApplicantsSort();
+        DistributeApplicants();
     }
 
-    int startApplicantsLine = 1 + coursesCount;
-    for (int i = 0; i < applicantsCount; i++)
+    private void ProcessEntrance(string path)
     {
-        var parts = lines[startApplicantsLine + i].Split(';');
+        var lines = File.ReadAllLines(path);
+        var header = lines[0].Split(';');
+        int coursesCount = int.Parse(header[0]);
+        int applicantsCount = int.Parse(header[1]);
 
-        string name = parts[0];
-        double l = double.Parse(parts[1]);
-        double m = double.Parse(parts[2]);
-        double e = double.Parse(parts[3]);
-        int o1 = int.Parse(parts[4]);
-        int o2 = int.Parse(parts[5]);
+        Courses = new Dictionary<int, Course>();
+        Applicants = new List<Applicant>();
 
-        var applicant = new Applicant(name, l, m, e, o1, o2);
-        applicants.Add(applicant);
-    }
-}
-
-static void DistributeApplicants(List<Applicant> applicants, Dictionary<int, Course> courses)
-{
-    foreach (Applicant applicant in applicants)
-    {
-        var course1 = courses[applicant.Op1.Choice];
-        var course2 = courses[applicant.Op2.Choice];
-
-        if (course1.IsApplicantAbleToApprovedlist())
+        for (int i = 0; i < coursesCount; i++)
         {
-            course1.PushNewApplicant(applicant);
+            var parts = lines[i + 1].Split(';');
+            int id = int.Parse(parts[0]);
+            string name = parts[1];
+            int vacancies = int.Parse(parts[2]);
+            Courses[id] = new Course(id, name, vacancies);
         }
-        else
+
+        int startApplicantsLine = 1 + coursesCount;
+        for (int i = 0; i < applicantsCount; i++)
         {
-            course2.PushNewApplicant(applicant);
-            course1.PushNewApplicant(applicant);
+            var parts = lines[startApplicantsLine + i].Split(';');
+            string name = parts[0];
+            double l = double.Parse(parts[1]);
+            double m = double.Parse(parts[2]);
+            double e = double.Parse(parts[3]);
+            int o1 = int.Parse(parts[4]);
+            int o2 = int.Parse(parts[5]);
+            Applicants.Add(new Applicant(name, l, m, e, o1, o2));
         }
     }
-}
 
-
-static void PrintData(Dictionary<int, Course> courses, List<Applicant> applicants)
-{
-    Console.WriteLine($"count courses: {courses.Count}, count applicants: {applicants.Count}");
-    int c = 0;
-    foreach (var applicant in applicants)
+    private void DistributeApplicants()
     {
-        Console.WriteLine($"{++c} - Avg: {applicant.Result.AvarageGrade}, Essay: {applicant.Result.Essay} - Applicant: {applicant.Name}");
+        foreach (var applicant in Applicants)
+        {
+            var course1 = Courses[applicant.Op1.Choice];
+            var course2 = Courses[applicant.Op2.Choice];
+
+            if (course1.IsApplicantAbleToApprovedlist())
+                course1.PushNewApplicant(applicant);
+            else
+            {
+                course2.PushNewApplicant(applicant);
+                course1.PushNewApplicant(applicant);
+            }
+        }
+    }
+
+    public void GenerateOutput(string outputFileName = "saida.txt")
+    {
+        FileHandler.GenerateOutputFile(Courses, outputFileName);
     }
 }
-
-
 
 public class Applicant
 (string n, double l, double m, double e, int o1, int o2)
@@ -229,6 +213,7 @@ public static class FileHandler
     }
 
 }
+
 public class FilaFlex<T> : IEnumerable<T>
 {
     private Pia<T> _head = new Pia<T>();
