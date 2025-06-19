@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\olive\\Downloads\\TP1 AED\\TrabalhoAed\\Stark\\Stark.csproj": {}
+    "C:\\Users\\olive\\Downloads\\TP1 AED\\TrabalhoAED\\Stark\\Stark.csproj": {}
   },
   "projects": {
-    "C:\\Users\\olive\\Downloads\\TP1 AED\\TrabalhoAed\\Stark\\Stark.csproj": {
+    "C:\\Users\\olive\\Downloads\\TP1 AED\\TrabalhoAED\\Stark\\Stark.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\olive\\Downloads\\TP1 AED\\TrabalhoAed\\Stark\\Stark.csproj",
+        "projectUniqueName": "C:\\Users\\olive\\Downloads\\TP1 AED\\TrabalhoAED\\Stark\\Stark.csproj",
         "projectName": "Stark",
-        "projectPath": "C:\\Users\\olive\\Downloads\\TP1 AED\\TrabalhoAed\\Stark\\Stark.csproj",
+        "projectPath": "C:\\Users\\olive\\Downloads\\TP1 AED\\TrabalhoAED\\Stark\\Stark.csproj",
         "packagesPath": "C:\\Users\\olive\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\olive\\Downloads\\TP1 AED\\TrabalhoAed\\Stark\\obj\\",
+        "outputPath": "C:\\Users\\olive\\Downloads\\TP1 AED\\TrabalhoAED\\Stark\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\olive\\AppData\\Roaming\\NuGet\\NuGet.Config"
