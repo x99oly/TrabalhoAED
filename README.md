@@ -138,6 +138,98 @@ while (list[i].CompareTo(list[pivot]) > 0) i++;
 while (list[j].CompareTo(list[pivot]) < 0) j--;
 ```
 ---
+
+## 📚 FilaFlex<T>: Fila Encadeada com Iteração
+
+### 🎯 Objetivo
+
+A `FilaFlex<T>` foi criada como uma **implementação básica de fila encadeada**, com operações fundamentais:
+
+- `Botar(T)`: insere no final da fila.
+- `Tirar()`: remove do início da fila.
+- Suporte à **iteração (`foreach`)**, através da implementação da interface `IEnumerable<T>`.
+
+Essa estrutura foi usada para gerenciar a **fila de espera de candidatos** em cada curso, onde:
+
+- A ordem de chegada (candidatos não selecionados inicialmente) deve ser preservada.
+- Não há limite de tamanho.
+- A fila precisa ser **iterável** para facilitar a geração do arquivo de saída.
+
+---
+
+### 🧱 Estrutura Interna
+
+A `FilaFlex<T>` é baseada na classe auxiliar `Pia<T>`, que representa um **nó encadeado**:
+
+- `Tralha`: conteúdo do nó.
+- `Prox`: ponteiro para o próximo nó.
+- `Ant`: definido, mas não usado na prática (poderia dar suporte a fila dupla).
+
+A fila é **simplesmente encadeada**, com ponteiros para o início (_head) e o último elemento (`Last`), permitindo inserção e remoção eficientes.
+
+---
+
+### 🔁 Interface IEnumerable<T>
+
+Para que a `FilaFlex<T>` possa ser usada com `foreach`, ela implementa a interface:
+
+```csharp
+public class FilaFlex<T> : IEnumerable<T>
+```
+O que IEnumerable<T> exige:
+1. Implementar o método:
+```csharp
+public IEnumerator<T> GetEnumerator()
+```
+2. Implementar também o método não genérico:
+
+```csharp
+System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+```
+
+### O que isso permite:
+Iterar sobre a fila com foreach.
+
+- Usar LINQ, se necessário.
+
+- Manter o encapsulamento, sem expor internamente os nós.
+
+### Exemplo da implementação:
+
+```csharp
+public IEnumerator<T> GetEnumerator()
+{
+    Pia<T>? atual = _head.Prox;
+    while (atual != null)
+    {
+        if (atual.Tralha != null)
+            yield return atual.Tralha;
+
+        atual = atual.Prox;
+    }
+}
+```
+
+## 🧾 Uso no Projeto
+Na geração da saída (FileHandler.GenerateOutputFile), a fila de espera de cada curso é percorrida com foreach:
+
+```csharp
+foreach (var a in course.Waitlist)
+{
+    sb.AppendLine($"{a.Name} {a.Result.AvarageGrade.ToString("F2").Replace('.', ',')}");
+}
+```
+Isso só é possível porque a FilaFlex<T> implementa IEnumerable<T> corretamente.
+
+### ✅ Benefícios da Abordagem
+Simplicidade e clareza: ideal para propósitos didáticos.
+
+- Encapsulamento: os nós (Pia<T>) não são expostos.
+
+- Iteração natural: suporte direto a foreach.
+
+- Flexibilidade: pode ser adaptada para outros cenários.
+
 ## 📌 Conclusão
 QuickSort foi uma escolha consciente por combinar:
 
