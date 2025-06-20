@@ -1,0 +1,192 @@
+﻿Matemática 488,00
+Selecionados
+Almeida 996,67
+Aline 996,67
+Controle_AprovadoEmAmbos 900,00
+Peter Parker 870,00
+Cardume 732,33
+Paulo 670,33
+Gustavo 488,00
+Fila de Espera
+Juliana 483,00
+Doris 428,33
+Peppa Pig 653,33
+Carta 635,67
+Ergonomia 584,00
+Marcela 576,67
+Carmem 572,00
+Perto 562,67
+Patrícia 538,33
+Fábio 407,00
+Dona Florinda 399,67
+Fábio 357,33
+Carol 262,67
+Super Mario Bros 570,67
+Professor Girafales 559,67
+Controle_AprovadoSoNaSegunda 500,00
+Messi 330,00
+Ordinario 266,67
+Tavares 224,00
+Ana 388,00
+Pedro 327,33
+Fagner 156,33
+Controle_RejeitadoAmbas 100,00
+
+Física 714,33
+Selecionados
+Fatia 819,67
+Nada 814,67
+Vinicin 735,00
+Maria 714,33
+Fila de Espera
+Vinícius 700,33
+Vinícius 700,33
+Rangel 680,00
+Rangel 680,00
+lombra 486,00
+Laura 448,67
+Joaquim 430,33
+Carta 635,67
+Pietro 630,00
+Pietro 630,00
+Marcela 576,67
+Carmem 572,00
+Malta 531,33
+Pao 480,33
+Marcos 443,67
+Lerda 329,33
+Carol 262,67
+Rodrigo 620,00
+Bruna 557,33
+Bob Esponja 551,33
+Brenda 525,00
+Controle_AprovadoSoNaSegunda 500,00
+Seu Madruga 465,67
+Teves 332,67
+Tavares 224,00
+Controle_RejeitadoAmbas 100,00
+
+Química 370,67
+Selecionados
+Gordin 837,67
+Julia 785,33
+Jaques 733,67
+Chaves 576,33
+Doris 428,33
+Chiquinha 423,00
+Ueliston 422,33
+Senhor Barriga 637,33
+Louca 405,00
+Patrícia 538,33
+Fábio 407,00
+Louco 370,67
+Fila de Espera
+Mickey Mouse 346,00
+Rodrigo 620,00
+Bianca 574,00
+Branca 572,67
+Bob Esponja 551,33
+Sandra 509,67
+Camila 497,67
+PRIMEIRO 476,67
+PRIMEIRO 476,67
+Seu Madruga 465,67
+Teves 332,67
+ultimo 407,33
+Felipe 246,00
+Teologo 189,00
+
+Estatística 448,67
+Selecionados
+Pato Donald 810,00
+Eduardo 575,00
+Larissa 549,33
+Diego 519,00
+Laura 448,67
+Fila de Espera
+Daniel 409,67
+Carla 507,67
+Cardoso 411,00
+Fábio 357,33
+Thiago 613,00
+Sandy Bochechas 602,67
+Ronaldinho 523,67
+Vanessa 504,33
+Rafael 375,00
+Gabriela 373,33
+Gabriela 373,33
+Messi 330,00
+Ticacaio 419,33
+ultimo 407,33
+
+Religião 584,00
+Selecionados
+Anderson 738,67
+João 772,67
+Ricardo 697,67
+Carlos 695,33
+Lord 641,67
+Guilherme 557,33
+Cerol 500,67
+José 475,33
+Peppa Pig 653,33
+Mateus 584,00
+Fila de Espera
+Ergonomia 584,00
+Lucas 451,33
+Coral 412,67
+Coral 412,67
+Daniel 409,67
+Louca 405,00
+Perto 562,67
+Malta 531,33
+Pao 480,33
+Mariana 476,33
+Dona Florinda 399,67
+Patrick Estrela 366,33
+Lerda 329,33
+Thiago 613,00
+Sandy Bochechas 602,67
+Renata 578,33
+Super Mario Bros 570,67
+Bruna 557,33
+Brenda 525,00
+Ronaldinho 523,67
+Camila 497,67
+Rafael 375,00
+Ordinario 266,67
+Ana 388,00
+Pedro 327,33
+Teologo 189,00
+Fagner 156,33
+
+Filosofia 520,33
+Selecionados
+Roberto 728,67
+Luana 656,00
+Fernanda 621,00
+Isabela 519,67
+lombra 486,00
+Juliana 483,00
+Deadpool 459,67
+Joaquim 430,33
+Lucas 451,33
+Natália 520,33
+Fila de Espera
+Carla 507,67
+Mariana 476,33
+Marcos 443,67
+Cardoso 411,00
+Patrick Estrela 366,33
+Mickey Mouse 346,00
+Tio Patinhas 622,67
+Tio Patinhas 622,67
+Renata 578,33
+Bianca 574,00
+Branca 572,67
+Professor Girafales 559,67
+Sandra 509,67
+Vanessa 504,33
+Ticacaio 419,33
+Felipe 246,00
+
