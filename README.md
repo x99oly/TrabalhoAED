@@ -209,6 +209,33 @@ public IEnumerator<T> GetEnumerator()
     }
 }
 ```
+> 🔍 **Observação sobre `yield`:**  
+> O `yield return` é uma forma simplificada de implementar iteradores em C#.  
+> Em vez de construir manualmente um `IEnumerator<T>`, o `yield` permite **produzir valores sob demanda**, mantendo automaticamente o estado da iteração.
+>  
+> Por exemplo, o código tradicional usando `for`:
+> ```csharp
+> public static IEnumerable<int> ContarAteCinco()
+> {
+>     var lista = new List<int>();
+>     for (int i = 1; i <= 5; i++)
+>         lista.Add(i);
+>     return lista;
+> }
+> ```
+> Pode ser reescrito com `yield` assim:
+> ```csharp
+> public static IEnumerable<int> ContarAteCinco()
+> {
+>     for (int i = 1; i <= 5; i++)
+>         yield return i;
+> }
+> ```
+> 
+> Isso evita a criação de listas intermediárias e permite **gerar os valores apenas quando forem necessários**, o que é especialmente útil em estruturas encadeadas como a `FilaFlex<T>`.
+> Links úteis: 
+> - [(youtube) C# Yield - Creating Iterators for beginners](https://www.youtube.com/watch?v=uv74SZ5MX5Q)
+> - [(microsoft) yield statement - provide the next element](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield)
 
 ## 🧾 Uso no Projeto
 Na geração da saída (FileHandler.GenerateOutputFile), a fila de espera de cada curso é percorrida com foreach:
