@@ -1,49 +1,160 @@
 # ✅ Progresso do Projeto - Gerenciador de Processo Seletivo da Universidade Stark
 
-## ✅ Funcionalidades já implementadas
+# 🎓 Projeto de Simulação de Processo Seletivo
 
-### 📄 Leitura do Arquivo `entrada.txt`
-- [x] A primeira linha do arquivo (`qtdCursos;qtdCandidatos`) é lida e processada.
-- [x] As linhas seguintes são corretamente interpretadas para:
-  - [x] Criar instâncias de `Course` com `Id`, `Nome` e `Vagas`.
-  - [x] Criar instâncias de `Applicant` com `Nome`, Notas (Redação, Matemática, Linguagens), e opções de curso (`Op1`, `Op2`).
-
-### 📚 Estrutura de Dados
-- [x] **Dicionário**: `Dictionary<int, Course>` implementado para acesso rápido aos cursos via `Id`.
-- [x] **Classes básicas**:
-  - `Course`
-  - `Applicant`
-  - `TestResult`
-
-### ✅ Lógica básica de parsing
-- [x] Toda leitura e transformação dos dados de entrada está corretamente separada e modularizada (`ProcessEntrance`).
-- [x] Estrutura pronta para armazenar candidatos em arrays e cursos em dicionário.
+Este projeto simula um processo de admissão para cursos, com base em notas dos candidatos e suas opções de preferência. A entrada é um arquivo `.txt` com os cursos e candidatos, e a saída é outro arquivo com os resultados da seleção.
 
 ---
 
-## ❌ Funcionalidades pendentes
+## 🔄 Fluxo de Execução
 
-### 🧮 Processamento da Seleção
-- [ ] Cálculo da **média simples** das três notas para todos os candidatos.
-- [ ] Aplicação do **critério de desempate** pela nota de **Redação**.
-- [ ] Lógica para:
-  - [ ] Selecionar candidatos nas duas opções (respeitando vagas).
-  - [ ] Candidatos aprovados apenas na 2ª opção entrarem na fila da 1ª.
-  - [ ] Candidatos não aprovados entrarem na fila de espera de ambos os cursos.
-  - [ ] Candidatos aprovados nas duas opções serem aceitos apenas na 1ª.
-
-### 📝 Saída no formato `saida.txt`
-- [ ] Nome do curso + nota de corte (menor média entre selecionados).
-- [ ] Lista de selecionados ordenada (por média, com desempate por redação).
-- [ ] Lista da fila de espera, também ordenada.
-
-### 🔢 Estrutura de Dados obrigatórias (pendentes de implementação)
-- [ ] **Lista (`List<T>`)** para armazenar os candidatos **selecionados** em cada curso.
-- [ ] **Fila flexível** (estrutura própria a ser criada) para armazenar a **fila de espera** de cada curso.
-- [ ] Implementação de um **algoritmo de ordenação eficiente** (ex: QuickSort ou MergeSort) para as listas.
+1. O programa lê o arquivo `entrada.txt`.
+2. Os dados são interpretados e armazenados em estruturas adequadas.
+3. Os candidatos são ordenados por média (e redação em caso de empate).
+4. Cada candidato tenta uma vaga:
+   - Primeiro na 1ª opção;
+   - Se não conseguir, tenta a 2ª opção e volta para a 1ª como espera.
+5. Um arquivo `saida.txt` é gerado com os resultados.
 
 ---
 
-## 📦 Organização do Projeto
-- [x] Classes separadas para entidades (`Course`, `Applicant`, `TestResult`).
-- [ ] Ainda é necessário dividir o restante do código (seleção, escrita de saída, fila customizada) em classes/métodos.
+## 🧠 Classes e Responsabilidades
+
+### `AdmissionManager`
+
+- **Responsável por coordenar o processo completo**.
+- Lê os dados (`ProcessEntrance`).
+- Ordena os candidatos.
+- Distribui entre os cursos.
+- Gera o arquivo de saída.
+
+### `Applicant`
+
+- Representa um candidato.
+- Contém:
+  - Nome
+  - Duas opções de curso (`Op1`, `Op2`)
+  - Resultado (`TestResult`)
+- Implementa `IComparable` para ordenação (por média e redação).
+
+### `Course`
+
+- Representa um curso com:
+  - Nome, ID e número de vagas
+  - Lista de aprovados (`Approvedlist`)
+  - Lista de espera (`Waitlist` - do tipo `FilaFlex<Applicant>`)
+- Tem lógica para:
+  - Inserir candidatos (`PushNewApplicant`)
+  - Verificar se ainda tem vaga (`IsApplicantAbleToApprovedlist`)
+
+### `TestResult`
+
+- Armazena as notas (linguagens, matemática, redação).
+- Calcula automaticamente a média (`AvarageGrade`).
+
+### `CourseOption`
+
+- Representa uma escolha de curso feita por um candidato.
+- Contém:
+  - O ID do curso
+  - Status da escolha (aprovado, recusado ou pendente)
+
+### `FilaFlex<T>`
+
+- **Fila personalizada com suporte à iteração** (`IEnumerable<T>`).
+- Internamente usa a classe `Pia<T>`, que simula nós ligados.
+- Métodos principais:
+  - `Botar`: adiciona ao final
+  - `Tirar`: remove do início
+  - `ToString` e `GetEnumerator`
+
+### `Pia<T>`
+
+- Estrutura que representa um **nó de uma fila**.
+- Tem:
+  - `Tralha`: o conteúdo
+  - Ponteiros para o próximo e anterior
+
+### `FileHandler`
+
+- Localiza o arquivo `entrada.txt` em diretórios ascendentes.
+- Gera o arquivo `saida.txt` com os seguintes dados:
+  - Nome do curso e nota de corte
+  - Lista de aprovados com notas
+  - Lista de espera com notas
+
+### `ListExtension`
+
+- Implementa ordenação (`QuickSort`) para listas de candidatos.
+- Ordena por média (e depois por redação), em ordem **decrescente**.
+
+---
+
+## ✅ Regras de Seleção
+
+- Cada candidato é avaliado por média aritmética das três notas.
+- Em caso de empate, vence quem tem maior nota na redação.
+- Um candidato tenta vaga no 1º curso; se não conseguir, tenta o 2º e fica na fila do 1º.
+- Cada curso só aprova até o número de vagas definidas.
+
+---
+## 🔀 Ordenação de Candidatos: QuickSort
+
+O projeto utiliza o algoritmo **QuickSort** para ordenar os candidatos antes da distribuição nos cursos. Essa ordenação é feita pela extensão `ApplicantsSort`, que aplica o `QuickSort` diretamente sobre a lista de candidatos (`List<Applicant>`), com base nos seguintes critérios:
+
+1. **Média das notas** (ordem decrescente);
+2. Em caso de empate, **nota da redação** (também decrescente).
+
+---
+
+### 🧠 Por que QuickSort?
+
+A escolha do QuickSort foi baseada em três motivos principais:
+
+#### ✅ **Eficiência**
+- QuickSort tem **complexidade média de tempo `O(n log n)`**, sendo muito rápido para listas médias e grandes, como uma lista de candidatos.
+- É mais eficiente que algoritmos simples como BubbleSort ou InsertionSort, especialmente com listas desordenadas.
+
+#### ✅ **Facilidade de implementação**
+- A versão utilizada no projeto é **compacta e recursiva**, implementada com comparações diretas usando `IComparable<T>`, o que a torna **fácil de adaptar** para diferentes critérios de ordenação.
+- O algoritmo opera **in-place** (não precisa de memória adicional significativa).
+
+#### ✅ **Estabilidade não é necessária**
+- Como o critério de ordenação depende apenas da média e da redação, **não é necessário preservar a ordem original** dos candidatos com notas iguais.
+- Por isso, a ausência de estabilidade (característica do QuickSort) **não impacta negativamente** o resultado.
+
+---
+
+### 🔧 Funcionamento no Projeto
+
+A função `ApplicantsSort` é definida como uma extensão da `List<T>`, e chama internamente a versão genérica do QuickSort:
+
+```csharp
+public static void ApplicantsSort<T>(this List<T> list) where T : IComparable<T>
+```
+Dentro, o particionamento divide a lista com base em um pivô central, e organiza os elementos maiores primeiro (ordem decrescente), refletindo o critério de "melhor média primeiro":
+```csharp
+while (list[i].CompareTo(list[pivot]) > 0) i++;
+while (list[j].CompareTo(list[pivot]) < 0) j--;
+```
+---
+## 📌 Conclusão
+QuickSort foi uma escolha consciente por combinar:
+
+- Alta performance prática;
+
+- Código simples e enxuto;
+
+- Desnecessidade de estabilidade na ordenação.
+
+Isso o torna ideal para ordenar candidatos em um processo seletivo, onde apenas os melhores resultados importam — independentemente da ordem original dos dados.
+
+---
+
+## 💡 Observações Técnicas
+
+- O projeto evita bibliotecas externas.
+- As estruturas são simples e didáticas, ideais para contextos educacionais.
+---
+
+
